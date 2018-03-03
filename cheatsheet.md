@@ -4,12 +4,20 @@
 #### Reference Conversion
 #### Primitive Conversion
 #### Liskov substitution principle 
-If S is a subtype of T, then objects of type T may be replaced with objects of type S (i.e. an object of type T may be substituted with any object of a subtype S) without altering any of the desirable properties of T.
+If `S` is a subtype of `T`, then objects of type `T` may be replaced with objects of type `S` (i.e. an object of type `T` may be substituted with any object of a subtype `S`) without altering any of the desirable properties of `T`.
 
 How to answer question:
-  - Show the property f(S) that is not present in T, i.e f(T) does not hold true
-  - Say that if an instance of S is replaced by an instance of T, this property will not hold
+  - Show the property f(`S`) that is not present in `T`, i.e f(`T`) does not hold true
+  - Say that if an instance of `S` is replaced by an instance of `T`, this property will not hold
   - Thus, LSP is violated
+#### Method matching
+There are 3 steps Java uses to find the method to fit, and after that prioritises more accurate types.
+- The first step allows for implicit widening conversions.
+- The second step allows for auto-boxing and unboxing (in addition to those in step 1).
+- The third step allows for variable arity methods (in addition to those in steps 1 and 2).
+
+Within a step, if any applicable methods were found, the proceeding steps will be skipped. If multiple applicable methods were found, the most specific method will be selected. If there are more than 1 most specific methods, the method invocation is _ambiguous_ and you get a compile-time error.
+
 
 ## Generics & Collections
 #### Generics
