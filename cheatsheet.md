@@ -4,6 +4,28 @@
 - When `Circle` extends `Object`, its method table contains a copy of `Object`'s method table. 
 - If a method in `Circle` overrides one in `Object`, the relevant pointer in `Circle`'s method table (in the part that was duplicated from `Object`) is changed to point to the new method body.
 
+#### Stack and Heap diagram
+What you need in a diagram:
+- Stack on the right, Heap on the left
+- Stack:
+  - Box with the name outside 
+  - Arrow outwards to the reference on the Heap
+- Heap:
+  - Class name on top
+  - <field name>: <value>
+Local classes:
+- Refractored during compilation into a normal class
+- A `final` field is added for each captured variable
+- A reference to the outer class (so that the local class instance can access fields of the associated outer class instance) is added.
+- Thus, the new normal class can function as if it is a local class.
+
+Notes:
+- Class definitions never reside on the stack or heap
+- For static methods, there is no "this" reference variable on the stack because a static method is not associated to a specific instance of the class
+- JVM keeps a _method_ area for storing the code for the methods; - _metaspace_ for storing meta information about classes; - _heap_ for storing dynamically allocated objects; - _stack_ for local variables and call frames.
+- `null` means that a reference is not pointing to any object.
+
+
 ## Types
 #### Reference Conversion
 #### Primitive Conversion
