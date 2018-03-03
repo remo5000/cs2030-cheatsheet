@@ -14,7 +14,7 @@ Stack:
 
 Heap:
 - Class name on top
-- <field name>: <value>
+- `<field name>: <value>`
 
 Local classes:
 - Refractored during compilation into a normal class
