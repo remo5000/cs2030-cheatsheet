@@ -43,7 +43,13 @@ Scenario in initialising a list:
 - Assigning `A<Object>` to `A<? extends Object>`: The parameterized type is bounded by `? extends Object`.
 - Assigning `A<Integer>` to `A<? super Integer>`: Java infers the type to be `Integer`. 
 
-## hashCode, Nested Class, enum
+## hashCode, Nested Class, enum, variable capture
 #### Type safety (relates to Generics as well)
   - enum allows a type to be defined and used for a set of predefined constants. Using a constant other than those predefined would lead to a compilation error. In contrast, using int is not type safe since int values other than those predefined can be accidentally assigned / passed as arguments. 
   - Generics allow classes / methods that use any reference type to be defined without resorting to using the Object type. It enforce type safety by binding the generic type to a specific given type argument at compile time. Attempt to pass in an incompatible type would led to compilation error 
+ 
+#### Variable Capture & Local Class
+- A local class has access to the members of its enclosing class.
+- A local class has access to local variables. However, a local class can only access local variables that are declared final or _effectively_ final. When a local class accesses a local variable or parameter of the enclosing block, it captures that variable or parameter. Note that instance variables are not captured, only local variables.
+- Local classes are similar to inner classes because they cannot define or declare any static members.
+- Local classes are non-static because they have access to instance members of the enclosing block. Consequently, they cannot contain most kinds of static declarations.
