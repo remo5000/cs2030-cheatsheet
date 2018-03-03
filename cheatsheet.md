@@ -5,16 +5,17 @@
 - If a method in `Circle` overrides one in `Object`, the relevant pointer in `Circle`'s method table (in the part that was duplicated from `Object`) is changed to point to the new method body.
 
 #### Stack and Heap diagram
-What you need in a diagram:
-- Stack on the right, Heap on the left
-- Stack:
-  - Box with the name outside 
-  - Arrow outwards to the reference on the Heap
-  - Add a box to encapsulate the variables within a function call frame (ensure parameter names, *not* argument names)
-  - Stack frames on top of one another
-- Heap:
-  - Class name on top
-  - <field name>: <value>
+Stack on the right, Heap on the left.
+Stack:
+- Box with the name outside 
+- Arrow outwards to the reference on the Heap
+- Add a box to encapsulate the variables within a function call frame (ensure parameter names, *not* argument names)
+- Stack frames on top of one another
+
+Heap:
+- Class name on top
+- <field name>: <value>
+
 Local classes:
 - Refractored during compilation into a normal class
 - A `final` field is added for each captured variable
