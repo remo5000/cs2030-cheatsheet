@@ -10,6 +10,8 @@ What you need in a diagram:
 - Stack:
   - Box with the name outside 
   - Arrow outwards to the reference on the Heap
+  - Add a box to encapsulate the variables within a function call frame (ensure parameter names, *not* argument names)
+  - Stack frames on top of one another
 - Heap:
   - Class name on top
   - <field name>: <value>
