@@ -1,6 +1,10 @@
 # CS2030 Cheatsheet(s) 
+## Inheritence
+#### Method tables
+- When `Circle` extends `Object`, its method table contains a copy of `Object`'s method table. 
+- If a method in `Circle` overrides one in `Object`, the relevant pointer in `Circle`'s method table (in the part that was duplicated from `Object`) is changed to point to the new method body.
 
-## Types and Inheritence
+## Types
 #### Reference Conversion
 #### Primitive Conversion
 #### Liskov substitution principle 
