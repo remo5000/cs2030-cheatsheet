@@ -104,7 +104,6 @@ Any code that might throw `Exception`s must either _Catch_ or _Specify_.
 - Don't expose implementation through the thrown `Exception`. You can always make a wrapper.
 - Don't do "Pokemon" catching.
 
-
 #### Notes
 - The `finally` block *always* executes when the `try` block exits.
 - Unchecked `Exception`s are not required to be specified in the method.
