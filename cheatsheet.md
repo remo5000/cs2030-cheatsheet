@@ -17,7 +17,7 @@ Heap:
 - `<field name>: <value>`
 
 Local classes:
-- Refractored during compilation into a normal class
+- Refactored during compilation into a normal class
 - A `final` field is added for each captured variable
 - A reference to the outer class (so that the local class instance can access fields of the associated outer class instance) is added.
 - Thus, the new normal class can function as if it is a local class.
@@ -36,9 +36,9 @@ Notes:
 If `S` is a subtype of `T`, then objects of type `T` may be replaced with objects of type `S` (i.e. an object of type `T` may be substituted with any object of a subtype `S`) without altering any of the desirable properties of `T`.
 
 How to answer question:
-  - Show the property f(`S`) that is not present in `T`, i.e f(`T`) does not hold true
-  - Say that if an instance of `S` is replaced by an instance of `T`, this property will not hold
-  - Thus, LSP is violated
+- Show the property f(`S`) that is not present in `T`, i.e f(`T`) does not hold true
+- Say that if an instance of `S` is replaced by an instance of `T`, this property will not hold
+- Thus, LSP is violated
 
 #### Method matching
 There are 3 steps Java uses to find the method to fit, and after that prioritises more accurate types.
@@ -47,6 +47,13 @@ There are 3 steps Java uses to find the method to fit, and after that prioritise
 - The third step allows for variable arity methods (in addition to those in steps 1 and 2).
 
 Within a step, if any applicable methods were found, the proceeding steps will be skipped. If multiple applicable methods were found, the most specific method will be selected. If there are more than 1 most specific methods, the method invocation is _ambiguous_ and you get a compile-time error.
+
+#### Null
+> There is also a special null type, the type of the expression null, which has no name. Because the null type has no name, it is impossible to declare a variable of the null type or to cast to the null type. The null reference is the only possible value of an expression of null type. **The null reference can always be cast to any reference type.** In practice, the programmer can ignore the null type and just pretend that null is merely a special literal that can be of any reference type.
+
+- The null reference can always be cast to any reference type.
+- A variable cannot be declared to be type null.
+- Null is technically a reference type.
 
 ## Generics & Collections
 #### Generics
