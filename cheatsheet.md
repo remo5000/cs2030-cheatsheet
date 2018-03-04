@@ -2,6 +2,12 @@
 
 ## Inheritance
 
+#### Classic Inheritence
+- A subclass inherits all of the public and protected members of its parent
+- If the subclass is in the same package as its parent, it also inherits the package-private members of the parent (this is usually the case in single-file declaration)
+- The `super.field` keyword can access _overriden and hiddent_ superclass fields.
+- The constuctor of a subclass can call on the constructor of a superclass. If it does not explicitly do so, the Java compiler will automatically insert a call to the no-argument constructor of the superclass.
+
 #### Polymorphism (Interface & Late binding)
 Consider an interface `I` and a class that implements it, `A`. `I i = new A(); i.f();`
 - During _compile_ time, Java checks if an object of type `A` can be assigned to a variable of type `I`. In this case, it can.
