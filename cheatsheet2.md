@@ -1,6 +1,6 @@
 # CS2030 Cheatsheet(s)
 
-## Inheritance
+## General
 
 #### Classic Inheritance
 - A subclass inherits all of the public and protected members of its parent
@@ -30,13 +30,12 @@ Overriding methods:
 - Methods with different signature can coexist in a class.
 - A method is overridden by a subclass when the subclass has a method with the same signature.
 
+\pagebreak
+
 #### Method tables
 - When `Circle` extends `Object`, its method table contains a copy of `Object`'s method table.
 - If a method in `Circle` overrides one in `Object`, the relevant pointer in `Circle`'s method table (in the part that was duplicated from `Object`) is changed to point to the new method body.
 
-
-
-<div style="page-break-after: always;"></div>
 #### Stack and Heap diagram
 Stack on the right, Heap on the left.
 Stack:
@@ -63,72 +62,7 @@ Notes:
 <div style="page-break-after: always;"></div>
 
 ---
-## Stack and Heap Diagram v2
-
-
-#### Method call
-<br>
-**Before** <br>
-![Before](https://nus-cs2030.github.io/1718-s2/figures/stack-and-heap/stack-and-heap.005.png)
-
-  JVM creates a *stack frame* for this instance method call. This stack frame
-  contains  
-  1. `this` reference.
-  2. The method arguments. `q`
-  3. Local variables within the method. _(Not shown)_
-
-*When a class method is called, the stack frame does not contain the `this`
-reference. *
-
-**After** <br>
-![After](https://nus-cs2030.github.io/1718-s2/figures/stack-and-heap/stack-and-heap.006.png)
-
-**With Primitives** <br>
-![With primitives](https://nus-cs2030.github.io/1718-s2/figures/stack-and-heap/stack-and-heap.007.png)
-
-_Note that `d` and `theta` do not point to an object but instead are
-passed by value._
-
-#### Variable capture
-
-Consider the program below:
-``` Java
-class B {
-  void f() {
-    int x = 0;
-    class A { // This is a local class
-      int y = 0;
-      A() {y = x + 1;}
-    }
-  A a = new A();
-  }
-}
-```
-Suppose that a variable b is an instance of class B, and a program calls b.f().
-Sketch the content of the stack and heap immediately after the
-Line A a = new A() is executed. Label the values and variables / fields clearly.
-You can assume b is already on the heap and you can ignore all other content of
-the stack and the heap before b.f() is called.
-
-![Answer](https://i.snag.gy/OSH8BP.jpg)
-
-**Variable capture**: Local class makes a copy of local
-variables used from the enclosing method to within itself
-This stack frame contains (due to method call):  
-  1. `this` reference.
-  2. No method arguments.
-  3. Local variables within the method. `x`
-
-This stack frame contains (due to variable declaration):
-  1. `a`, the variable initialised with a `new A()` object.
-
-This heap contains (due to variable capture):
-  1. An instance of class `A`.
-    1. Captured variable `x` now part of its instance attributes.
-    2. Declared variable `y` now part of its instance attributes.
-
-
-
+\pagebreak
 
 ## Types
 There are 2 types in Java: Primitive and Composite (usually in the form of an ADT)
@@ -251,7 +185,7 @@ Any code that might throw `Exception`s must either _Catch_ or _Specify_.
 |Inner class| All variables and methods of outer class |this.innerClass   | No static fields or methods sans static final|
 |Local class| All _effectively final_ local variables in the method it is created in + whatever nested class can access. | Only exist in namespace of method unless returned  |Same as Inner|
 |Anonymous class (subset of local class)|  Same as local class | Given Identifier| Same as Inner|
-
+\pagebreak
 #### Anon Class
 **Accessing Local Variables of the Enclosing Scope, and Declaring and Accessing Members of the Anonymous Class**
 
