@@ -160,6 +160,9 @@ Any code that might throw `Exception`s must either _Catch_ or _Specify_.
 
 ## hashCode, Nested Class, enum, variable capture
 
+#### hashCode
+Nothing much to say here, remember to override `hashCode()` and `equals()` if you are going to use a `HashMap` or `HashSet`.
+
 #### Type safety (relates to Generics as well)
   - enum allows a type to be defined and used for a set of predefined constants. Using a constant other than those predefined would lead to a compilation error. In contrast, using int is not type safe since int values other than those predefined can be accidentally assigned / passed as arguments.
   - Generics allow classes / methods that use any reference type to be defined without resorting to using the Object type. It enforce type safety by binding the generic type to a specific given type argument at compile time. Attempt to pass in an incompatible type would led to compilation error
