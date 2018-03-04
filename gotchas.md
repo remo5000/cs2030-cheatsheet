@@ -9,7 +9,8 @@ public class Arity {
 class Example {
   public static void arity(Integer n1, int n2) {...}
   public static void arity(int n1, Integer n2) {...}
-}```
+}
+```
 
 ## Interface Casting
 ``` Java
@@ -51,4 +52,28 @@ class S implements Y{}
 interface Z<E> extends Root<E> {}
 class V<E> implements Z<E>{}
 class U extends V<Number> implements X {}
+```
+
+## Primitive
+
+``` Java
+public class Primitive {
+  // Okay!
+  B[] arrB = {new B()};
+  A[] arrA = arrB;
+
+  int[] arrInt = {1,2,3,4};
+  double[] arrDbl = arrInt; // Compile time: not ok; int[] is not a subtype of double[]
+
+  /**
+   * Interestingly this makes sense because int is not a subtype of double.
+   * Java primitives have no class, and primitive types are not objects.
+   * Java's primitive conversions are allowed/disallowed based on whether information is lost.
+   *
+   * In this case, int[] is an object, so is double[] - but they are not subtypes.
+   */
+}
+
+class A {}
+class B extends A {}
 ```

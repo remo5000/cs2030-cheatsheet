@@ -1,6 +1,6 @@
 # CS2030 Cheatsheet(s)
 
-## Inheritence
+## Inheritance
 
 #### Polymorphism (Interface & Late binding)
 Consider an interface `I` and a class that implements it, `A`. `I i = new A(); i.f();`
@@ -140,3 +140,16 @@ Any code that might throw `Exception`s must either _Catch_ or _Specify_.
 - A local class has access to local variables. However, a local class can only access local variables that are declared final or _effectively_ final. When a local class accesses a local variable or parameter of the enclosing block, it captures that variable or parameter. Note that instance variables are not captured, only local variables.
 - Local classes are similar to inner classes because they cannot define or declare any static members.
 - Local classes are non-static because they have access to instance members of the enclosing block. Consequently, they cannot contain most kinds of static declarations.
+
+## Default Initialisation
+|Data Type|Default Value|
+|:-------:|:-----------:|
+|`byte`|`0`|
+|`short`|`0`|
+|`int`|`0`|
+|`long`   |`0L`   |
+|`float`   |`0.0f`   |
+|`double`   |`0.0d`   |
+|`char`   |`'\u0000'`   |
+|`String (or any object)`|`null`|
+|`boolean`|`false`|
