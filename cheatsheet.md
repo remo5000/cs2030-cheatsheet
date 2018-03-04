@@ -87,7 +87,7 @@ Getting and setting from references with wildcard generics:
 Any code that might throw `Exception`s must either _Catch_ or _Specify_.
 - Catch: A `try` statement that catches the `Exception`. It must provide a handler for this `Exception`
 - Specify: A method can specify that it can `throw` an `Exception`.
-- Code that fails to honor the _Catch_ or _Specify_ Requirement will not compile.
+- In essence, _we need to either catch all checked exceptions or let it propagate to the calling method_. Code that fails to honor the _Catch_ or _Specify_ Requirement will not compile.
 
 Notes:
 - The `finally` block *always* executes when the `try` block exits.
