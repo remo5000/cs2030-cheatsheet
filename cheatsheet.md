@@ -4,7 +4,7 @@
 
 #### Polymorphism (Interface & Late binding)
 Consider an interface `I` and a class that implements it, `A`. `I i = new A(); i.f();`
-- During _compile_ time, Java checks if an object of type `A` can be assigned to a variable of type `I`. In this case, it can. 
+- During _compile_ time, Java checks if an object of type `A` can be assigned to a variable of type `I`. In this case, it can.
 - During _run time_, Java looks at the object in the heap of type `A`, determines its class and right implementation of `f()`.
 
 Overriding methods:
@@ -62,17 +62,7 @@ There are 3 steps Java uses to find the method to fit, and after that prioritise
 - The third step allows for variable arity methods (in addition to those in steps 1 and 2).
 
 Within a step, if any applicable methods were found, the proceeding steps will be skipped. If multiple applicable methods were found, the most specific method will be selected. If there are more than 1 most specific methods, the method invocation is _ambiguous_ and you get a compile-time error.
-``` java
-public class Arity {
-  public static void main(String[] args) {
-    Example.arity(3, 7); //Error: java: reference to arity is ambiguous
-  }
-}
 
-class Example {
-  public static void arity(Integer n1, int n2) {...}
-  public static void arity(int n1, Integer n2) {...}
-}```
 
 #### Null
 > There is also a special null type, the type of the expression null, which has no name. Because the null type has no name, it is impossible to declare a variable of the null type or to cast to the null type. The null reference is the only possible value of an expression of null type. **The null reference can always be cast to any reference type.** In practice, the programmer can ignore the null type and just pretend that null is merely a special literal that can be of any reference type.
