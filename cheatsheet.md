@@ -42,6 +42,12 @@ Notes:
 
 
 ## Types
+There are 2 types in Java: Primitive and Compositie (usually in the form of an ADT)
+There at a few kinds of variables:
+- Instance variables (non static fields)
+- Class variables (static fields)
+- Local variables (see Variable Capture)
+- Parameters (these are _not_ fields)
 
 #### Reference Conversion
 
