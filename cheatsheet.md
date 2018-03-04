@@ -60,12 +60,23 @@ Notes:
 
 
 ## Types
-There are 2 types in Java: Primitive and Compositie (usually in the form of an ADT)
+There are 2 types in Java: Primitive and Compositie (usually in the form of an ADT).
+
 There at a few kinds of variables:
 - Instance variables (non static fields)
 - Class variables (static fields)
 - Local variables (see Variable Capture)
 - Parameters (these are _not_ fields)
+
+#### Typing and Variance
+- To denote a subtype relation e.g `S` is a subtype of `T`, we say `S <: T`.
+- For primitive: `byte <: short <: int <: long <: float <: double; and char <: int`.
+
+Suppose `A(T)` is the complex type constructed from `T`. Then we say that 
+- A is covariant if `T<:S` implies `A(T)<:A(S)`,
+- A is contravariant if `T<:S` implies `A(S)<:A(T)`,
+- A is bivariant if it is both covariant and contravariant,
+- and A is invariant if it is neither covariant nor contravariant.
 
 #### Reference Conversion
 
