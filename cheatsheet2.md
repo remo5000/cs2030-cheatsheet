@@ -62,11 +62,11 @@ Notes:
 <div style="page-break-after: always;"></div>
 
 ---
+
 \pagebreak
 
 ## Types
-There are 2 types in Java: Primitive and Composite (usually in the form of an ADT)
-There at a few kinds of variables:
+There are 2 types in Java: Primitive and Composite (usually in the form of an ADT) There are a few kinds of variables:
 - Instance variables (non static fields)
 - Class variables (static fields)
 - Local variables (see Variable Capture)
@@ -228,3 +228,7 @@ or a `HashSet`.
 - A local class has access to local variables. However, a local class can only access local variables that are declared final or _effectively final_. When a local class accesses a local variable or parameter of the enclosing block, it captures that variable or parameter. Note that instance variables are not captured, only local variables.
 - Local classes are similar to inner classes because they cannot define or declare any static members.
 - Local classes are non-static because they have access to instance members of the enclosing block. Consequently, they cannot contain most kinds of static declarations.
+
+**Extra table**<br>
+
+![](https://i.snag.gy/RLU3qe.jpg)

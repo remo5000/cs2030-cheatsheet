@@ -12,6 +12,49 @@ class Example {
 }
 ```
 
+## Primitive
+
+``` Java
+public class Primitive {
+  // Okay!
+  B[] arrB = {new B()};
+  A[] arrA = arrB;
+
+  int[] arrInt = {1,2,3,4};
+  double[] arrDbl = arrInt; // Compile time: not ok; int[] is not
+                            // a subtype of double[]
+
+  /**
+   * Interestingly this makes sense because int is not a subtype of double.
+   * Java primitives have no class, and primitive types are not objects.
+   * Java's primitive conversions are allowed/disallowed based on whether
+   * information is lost.
+   *
+   * In this case, int[] is an object, so is double[] - but they are not subtypes.
+   */
+}
+
+class A {}
+class B extends A {}
+```
+
+## Static Generic
+``` Java
+/**
+ * You can't use a class's generic type parameters in static methods or
+ * static fields.
+ * The class's type parameters are only in scope for instance methods and
+ * instance fields
+ */
+class StaticGeneric<T> {
+  static int x = 1;
+  static T y; // Compile error: non-static type variable T cannot be referenced
+              // from a static context.
+  static T foo(T t) {return t;}; // Compile error: non-static type variable T
+                                 // cannot be referenced from a static context.
+}
+```
+
 ## Interface Casting
 ``` Java
 public class InterfaceCasting {
@@ -34,9 +77,11 @@ public class InterfaceCasting {
     Z zOk1 = (Z) new T();
     Z zOk2 = (Z) new S();
 
-    X xOk1 = (X) new V(); // X is parameterised. Compile time: ok because V's supertype Z is not parameterized
+    X xOk1 = (X) new V(); // X is parameterised. Compile time: ok because V's
+                          // supertype Z is not parameterized
                           // See class U
-    Z zNotOk = (Z) new Integer(2); // Compile time: not ok because Integer is a final class that doesn't inherit Z.
+    Z zNotOk = (Z) new Integer(2); // Compile time: not ok because Integer is a
+                                   // final class that doesn't inherit Z.
                                           // i.e. cannot be extended.
   }
 }
@@ -52,42 +97,4 @@ class S implements Y{}
 interface Z<E> extends Root<E> {}
 class V<E> implements Z<E>{}
 class U extends V<Number> implements X {}
-```
-
-## Primitive
-
-``` Java
-public class Primitive {
-  // Okay!
-  B[] arrB = {new B()};
-  A[] arrA = arrB;
-
-  int[] arrInt = {1,2,3,4};
-  double[] arrDbl = arrInt; // Compile time: not ok; int[] is not a subtype of double[]
-
-  /**
-   * Interestingly this makes sense because int is not a subtype of double.
-   * Java primitives have no class, and primitive types are not objects.
-   * Java's primitive conversions are allowed/disallowed based on whether information is lost.
-   *
-   * In this case, int[] is an object, so is double[] - but they are not subtypes.
-   */
-}
-
-class A {}
-class B extends A {}
-```
-
-## Static Generic
-``` Java
-/**
- * You can't use a class's generic type parameters in static methods or static fields.
- * The class's type parameters are only in scope for instance methods and instance fields
- */
-
-class StaticGeneric<T> {
-  static int x = 1;
-  static T y; // Compile error: non-static type variable T cannot be referencef froma static context.
-  static T foo(T t) {return t;}; // Compile error: non-static type variable T cannot be referencef froma static context.
-}
 ```
