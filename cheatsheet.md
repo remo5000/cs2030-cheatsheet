@@ -18,6 +18,17 @@ Overriding methods:
 - Methods with different signature can coexist in a class.
 - A method is overriden by a subclass when the subclass has a method with the same signature.
 
+#### Access modifiers
+The following table, taken from [Oracle's Java Tutorial](https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html)
+summarizes the access modifiers:
+
+| Access Modifier  | Class  | Package  | Subclass  | World |
+| ----- | ---- | ---- | ---- | ---- |
+| public | Y | Y | Y |  Y |
+| protected | Y | Y | Y | N |
+| no modifier | Y | Y | N | N |
+| private | Y |  N | N | N | 
+
 #### Method tables
 - When `Circle` extends `Object`, its method table contains a copy of `Object`'s method table.
 - If a method in `Circle` overrides one in `Object`, the relevant pointer in `Circle`'s method table (in the part that was duplicated from `Object`) is changed to point to the new method body.
