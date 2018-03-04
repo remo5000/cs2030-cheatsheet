@@ -108,7 +108,7 @@ Within a step, if any applicable methods were found, the proceeding steps will b
 
 ## Generics & Collections
 
-#### Generics
+#### Generics & Type Erasure
 Suppose a class or interface `B` is a subtype of `A`, then `B<T>` is also a subtype of `A<T>`, i.e., they are covariant.
 
 Generics, however, are _invariant_, with respect to the type parameter.  That is, if a class or interface `B` is a subtype of `A`, then neither is `C<B>` a subtype of `C<A>`, nor is `C<A>` a subtype of `C<B>`.  A parameterized type must be used with exactly with same type argument.  For instance: `Queue<Integer>` is _not_ a subtype of `Queue<Object>`.
