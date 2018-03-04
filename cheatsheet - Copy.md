@@ -28,15 +28,12 @@ Consider an interface `I` and a class that implements it, `A`. `I i = new A(); i
 Overriding methods:
 - When a method is called, we look at its _method signature_. This is i) the method's name and ii) the number, order, and type of the arguments. **return type is not part of signature**.
 - Methods with different signature can coexist in a class.
-- A method is overridden by a subclass when the subclass has a method with the same signature.
+- A method is overriden by a subclass when the subclass has a method with the same signature.
 
 #### Method tables
 - When `Circle` extends `Object`, its method table contains a copy of `Object`'s method table.
 - If a method in `Circle` overrides one in `Object`, the relevant pointer in `Circle`'s method table (in the part that was duplicated from `Object`) is changed to point to the new method body.
 
-
-
-<div style="page-break-after: always;"></div>
 #### Stack and Heap diagram
 Stack on the right, Heap on the left.
 Stack:
@@ -60,11 +57,10 @@ Notes:
 - For static methods, there is no "this" reference variable on the stack because a static method is not associated to a specific instance of the class
 - JVM keeps a _method_ area for storing the code for the methods; - _metaspace_ for storing meta information about classes; - _heap_ for storing dynamically allocated objects; - _stack_ for local variables and call frames.
 - `null` means that a reference is not pointing to any object.
-<div style="page-break-after: always;"></div>
 
----
 ## Stack and Heap Diagram v2
-
+[diagram1]: https://nus-cs2030.github.io/1718-s2/figures/stack-and-heap/stack-and-heap.001.png
+![diagram1]
 
 #### Method call
 <br>
@@ -137,21 +133,6 @@ There at a few kinds of variables:
 - Class variables (static fields)
 - Local variables (see Variable Capture)
 - Parameters (these are _not_ fields)
-
-
-#### Default Initialisation
-|Data Type|Default Value|
-|:-------:|:-----------:|
-|`byte`|`0`|
-|`short`|`0`|
-|`int`|`0`|
-|`long`   |`0L`   |
-|`float`   |`0.0f`   |
-|`double`   |`0.0d`   |
-|`char`   |`'\u0000'`   |
-|`String (or any object)`|`null`|
-|`boolean`|`false`|
-
 
 #### Typing and Variance
 - To denote a subtype relation e.g `S` is a subtype of `T`, we say `S <: T`.
@@ -245,42 +226,6 @@ Any code that might throw `Exception`s must either _Catch_ or _Specify_.
 
 ## hashCode, Nested Class, enum, variable capture
 
-|class type|Can access|Accessed by| Restrictions |
-|:---|:---:|:---:|:---:|
-|Static nested class|Only static variables and methods of outer class|Outer.staticClass||
-|Inner class| All variables and methods of outer class |this.innerClass   | No static fields or methods sans static final|
-|Local class| All _effectively final_ local variables in the method it is created in + whatever nested class can access. | Only exist in namespace of method unless returned  |Same as Inner|
-|Anonymous class (subset of local class)|  Same as local class | Given Identifier| Same as Inner|
-
-#### Anon Class
-**Accessing Local Variables of the Enclosing Scope, and Declaring and Accessing Members of the Anonymous Class**
-
-Like local classes, anonymous classes can capture variables; they have the same access to local variables of the enclosing scope:
-
-+ An anonymous class has access to the fields of its enclosing class.
-
-+ An anonymous class cannot access local variables in its enclosing scope that are not declared as final or effectively final.
-
-+ Like a nested class, a declaration of a type (such as a variable) in an anonymous class shadows any other declarations in the enclosing scope that have the same name.
-
-Anonymous classes also have the same restrictions as local classes with respect to their members:
-
-+ You cannot declare static initializers or member interfaces in an anonymous class.
-
-+ An anonymous class can have static members provided that they are constant variables.
-
-Note that you can declare the following in anonymous classes:
-
-+ Fields
-
-+ Extra methods (even if they do not implement any methods of the supertype)
-
-+ Instance initializers
-
-+ Local classes
-
-However, you cannot declare constructors in an anonymous class.
-
 #### hashCode
 Remember to override `hashCode()` and `equals()` if you are goinf ot use a `HashMap`
 or a `HashSet`.
@@ -291,6 +236,19 @@ or a `HashSet`.
 
 #### Variable Capture & Local Class
 - A local class has access to the members of its enclosing class.
-- A local class has access to local variables. However, a local class can only access local variables that are declared final or _effectively final_. When a local class accesses a local variable or parameter of the enclosing block, it captures that variable or parameter. Note that instance variables are not captured, only local variables.
+- A local class has access to local variables. However, a local class can only access local variables that are declared final or _effectively_ final. When a local class accesses a local variable or parameter of the enclosing block, it captures that variable or parameter. Note that instance variables are not captured, only local variables.
 - Local classes are similar to inner classes because they cannot define or declare any static members.
 - Local classes are non-static because they have access to instance members of the enclosing block. Consequently, they cannot contain most kinds of static declarations.
+
+## Default Initialisation
+|Data Type|Default Value|
+|:-------:|:-----------:|
+|`byte`|`0`|
+|`short`|`0`|
+|`int`|`0`|
+|`long`   |`0L`   |
+|`float`   |`0.0f`   |
+|`double`   |`0.0d`   |
+|`char`   |`'\u0000'`   |
+|`String (or any object)`|`null`|
+|`boolean`|`false`|
