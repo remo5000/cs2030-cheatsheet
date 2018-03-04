@@ -2,6 +2,16 @@
 
 ## Inheritence
 
+#### Polymorphism (Interface & Late binding)
+Consider an interface `I` and a class that implements it, `A`. `I i = new A(); i.f();`
+- During _compile_ time, Java checks if an object of type `A` can be assigned to a variable of type `I`. In this case, it can. 
+- During _run time_, Java looks at the object in the heap of type `A`, determines its class and right implementation of `f()`.
+
+Overriding methods:
+- When a method is called, we look at its _method signature_. This is i) the method's name and ii) the number, order, and type of the arguments. **return type is not part of signature**.
+- Methods with different signature can coexist in a class.
+- A method is overriden by a subclass when the subclass has a method with the same signature.
+
 #### Method tables
 - When `Circle` extends `Object`, its method table contains a copy of `Object`'s method table.
 - If a method in `Circle` overrides one in `Object`, the relevant pointer in `Circle`'s method table (in the part that was duplicated from `Object`) is changed to point to the new method body.
