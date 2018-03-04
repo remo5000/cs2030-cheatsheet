@@ -2,12 +2,23 @@
 
 ## Inheritance
 
-#### Classic Inheritence
+#### Classic Inheritance
 - A subclass inherits all of the public and protected members of its parent
 - If the subclass is in the same package as its parent, it also inherits the package-private members of the parent (this is usually the case in single-file declaration)
 - The `super.field` keyword can access _overriden and hiddent_ superclass fields.
 - The constuctor of a subclass can call on the constructor of a superclass. If it does not explicitly do so, the Java compiler will automatically insert a call to the no-argument constructor of the superclass.
-- A typical scenario where inheritence is needed is when a subclass does the same things as the superclass and some _additional_ functionality.
+- A typical scenario where inheritance is needed is when a subclass does the same
+things as the superclass and some _additional_ functionality.
+
+#### Access modifiers
+= The following table, summarizes the access modifiers:
+
+| Access Modifier  | Class  | Package  | Subclass  | World |
+| ----- | ---- | ---- | ---- | ---- |
+| public | Y | Y | Y |  Y |
+| protected | Y | Y | Y | N |
+| no modifier | Y | Y | N | N |
+| private | Y |  N | N | N |
 
 #### Polymorphism (Interface & Late binding)
 Consider an interface `I` and a class that implements it, `A`. `I i = new A(); i.f();`
@@ -18,17 +29,6 @@ Overriding methods:
 - When a method is called, we look at its _method signature_. This is i) the method's name and ii) the number, order, and type of the arguments. **return type is not part of signature**.
 - Methods with different signature can coexist in a class.
 - A method is overriden by a subclass when the subclass has a method with the same signature.
-
-#### Access modifiers
-The following table, taken from [Oracle's Java Tutorial](https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html)
-summarizes the access modifiers:
-
-| Access Modifier  | Class  | Package  | Subclass  | World |
-| ----- | ---- | ---- | ---- | ---- |
-| public | Y | Y | Y |  Y |
-| protected | Y | Y | Y | N |
-| no modifier | Y | Y | N | N |
-| private | Y |  N | N | N | 
 
 #### Method tables
 - When `Circle` extends `Object`, its method table contains a copy of `Object`'s method table.
@@ -58,10 +58,76 @@ Notes:
 - JVM keeps a _method_ area for storing the code for the methods; - _metaspace_ for storing meta information about classes; - _heap_ for storing dynamically allocated objects; - _stack_ for local variables and call frames.
 - `null` means that a reference is not pointing to any object.
 
+## Stack and Heap Diagram v2
+[diagram1]: https://nus-cs2030.github.io/1718-s2/figures/stack-and-heap/stack-and-heap.001.png
+![diagram1]
+
+#### Method call
+<br>
+**Before** <br>
+![Before](https://nus-cs2030.github.io/1718-s2/figures/stack-and-heap/stack-and-heap.005.png)
+
+  JVM creates a *stack frame* for this instance method call. This stack frame
+  contains  
+  1. `this` reference.
+  2. The method arguments. `q`
+  3. Local variables within the method. _(Not shown)_
+
+*When a class method is called, the stack frame does not contain the `this`
+reference. *
+
+**After** <br>
+![After](https://nus-cs2030.github.io/1718-s2/figures/stack-and-heap/stack-and-heap.006.png)
+
+**With Primitives** <br>
+![With primitives](https://nus-cs2030.github.io/1718-s2/figures/stack-and-heap/stack-and-heap.007.png)
+
+_Note that `d` and `theta` do not point to an object but instead are
+passed by value._
+
+#### Variable capture
+
+Consider the program below:
+``` Java
+class B {
+  void f() {
+    int x = 0;
+    class A { // This is a local class
+      int y = 0;
+      A() {y = x + 1;}
+    }
+  A a = new A();
+  }
+}
+```
+Suppose that a variable b is an instance of class B, and a program calls b.f().
+Sketch the content of the stack and heap immediately after the
+Line A a = new A() is executed. Label the values and variables / fields clearly.
+You can assume b is already on the heap and you can ignore all other content of
+the stack and the heap before b.f() is called.
+
+![Answer](https://i.snag.gy/OSH8BP.jpg)
+
+**Variable capture**: Local class makes a copy of local
+variables used from the enclosing method to within itself
+This stack frame contains (due to method call):  
+  1. `this` reference.
+  2. No method arguments.
+  3. Local variables within the method. `x`
+
+This stack frame contains (due to variable declaration):
+  1. `a`, the variable initialised with a `new A()` object.
+
+This heap contains (due to variable capture):
+  1. An instance of class `A`.
+    1. Captured variable `x` now part of its instance attributes.
+    2. Declared variable `y` now part of its instance attributes.
+
+
+
 
 ## Types
-There are 2 types in Java: Primitive and Compositie (usually in the form of an ADT).
-
+There are 2 types in Java: Primitive and Composite (usually in the form of an ADT)
 There at a few kinds of variables:
 - Instance variables (non static fields)
 - Class variables (static fields)
@@ -72,7 +138,7 @@ There at a few kinds of variables:
 - To denote a subtype relation e.g `S` is a subtype of `T`, we say `S <: T`.
 - For primitive: `byte <: short <: int <: long <: float <: double; and char <: int`.
 
-Suppose `A(T)` is the complex type constructed from `T`. Then we say that 
+Suppose `A(T)` is the complex type constructed from `T`. Then we say that
 - A is covariant if `T<:S` implies `A(T)<:A(S)`,
 - A is contravariant if `T<:S` implies `A(S)<:A(T)`,
 - A is bivariant if it is both covariant and contravariant,
@@ -161,7 +227,8 @@ Any code that might throw `Exception`s must either _Catch_ or _Specify_.
 ## hashCode, Nested Class, enum, variable capture
 
 #### hashCode
-Remember to override `hashCode()` and `equals()` if you are going to use a `HashMap` or `HashSet`.
+Remember to override `hashCode()` and `equals()` if you are goinf ot use a `HashMap`
+or a `HashSet`.
 
 #### Type safety (relates to Generics as well)
   - enum allows a type to be defined and used for a set of predefined constants. Using a constant other than those predefined would lead to a compilation error. In contrast, using int is not type safe since int values other than those predefined can be accidentally assigned / passed as arguments.
