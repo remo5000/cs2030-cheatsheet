@@ -102,19 +102,26 @@ Getting and setting from references with wildcard generics:
 - We can add `A` typed objects into a `List<? super A>` as any list it refers to will have a parameterised generic supertype of `A` (or `A` itself). So, implicit widening reference conversion will help us add an `A` typed object into the list.
 
 ## Exceptions
+
+#### Rules
 Any code that might throw `Exception`s must either _Catch_ or _Specify_.
 - Catch: A `try` statement that catches the `Exception`. It must provide a handler for this `Exception`
 - Specify: A method can specify that it can `throw` an `Exception`.
-- Code that fails to honor the _Catch_ or _Specify_ Requirement will not compile.
+- In essence, _we need to either catch all checked exceptions or let it propagate to the calling method_. Code that fails to honor the _Catch_ or _Specify_ Requirement will not compile.
 
-Notes:
+#### Good Practices
+- Preferrably, more specific `Exception`s should be thrown, to prevent loss of information and to prevent unintended catching of `Exception`s.
+- Make sure to catch exceptions to clean up/deallocate resources.
+- Don't expose implementation through the thrown `Exception`. You can always make a wrapper.
+- Don't do "Pokemon" catching.
+
+#### Notes
 - The `finally` block *always* executes when the `try` block exits.
 - Unchecked `Exception`s are not required to be specified in the method.
-- Preferrably, more specific `Exception`s should be thrown, to prevent loss of information and to prevent unintended catching of `Exception`s.
 - When overriding a method, the new method must throw the same, or more specififc (subclass) `Exception` as the overriden method.
 - All unchecked exceptions are implicitly declared to be thrown by any method e.g `Error` and `RuntimeException`.
 - The `catch` block is not just limited to `Exception`s: any class that inherits from `Throwable` can be caught there.
-- You can use the `|` operator to group a few specific `Exception`s together.
+- You can use the `|` operator to group a few specific `Exception`s together e.g `catch (IOException|SQLException ex) {...}`
 
 ## hashCode, Nested Class, enum, variable capture
 
