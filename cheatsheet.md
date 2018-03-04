@@ -96,7 +96,7 @@ Notes:
 - When overriding a method, the new method must throw the same, or more specififc (subclass) `Exception` as the overriden method.
 - All unchecked exceptions are implicitly declared to be thrown by any method e.g `Error` and `RuntimeException`.
 - The `catch` block is not just limited to `Exception`s: any class that inherits from `Throwable` can be caught there.
-- You can use the `|` operator to group a few specific `Exception`s together.
+- You can use the `|` operator to group a few specific `Exception`s together e.g `catch (IOException|SQLException ex) {...}`
 
 ## hashCode, Nested Class, enum, variable capture
 
