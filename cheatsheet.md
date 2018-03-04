@@ -77,6 +77,11 @@ Getting and setting from references with wildcard generics:
 - We can get `A` typed items from `List<? extends A>` as any item will be extending `A`, so implicit widening reference conversion will help us assign the object, that extends `A`, to a variable of type `A`.
 - We can add `A` typed objects into a `List<? super A>` as any list it refers to will have a parameterised generic supertype of `A` (or `A` itself). So, implicit widening reference conversion will help us add an `A` typed object into the list.
 
+## Exceptions
+Notes:
+- When overriding a method, the new method must throw the same, or more specififc (subclass) `Exception` as the overriden method.
+- All unchecked exceptions are implicitly declared to be thrown by any method e.g `Error` and `RuntimeException`.
+
 
 ## hashCode, Nested Class, enum, variable capture
 #### Type safety (relates to Generics as well)
