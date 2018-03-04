@@ -77,3 +77,17 @@ public class Primitive {
 class A {}
 class B extends A {}
 ```
+
+## Static Generic
+``` Java
+/**
+ * You can't use a class's generic type parameters in static methods or static fields.
+ * The class's type parameters are only in scope for instance methods and instance fields
+ */
+
+class StaticGeneric<T> {
+  static int x = 1;
+  static T y; // Compile error: non-static type variable T cannot be referencef froma static context.
+  static T foo(T t) {return t;}; // Compile error: non-static type variable T cannot be referencef froma static context.
+}
+```
