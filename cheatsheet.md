@@ -1,5 +1,7 @@
 # CS2030 Cheatsheet(s)
+
 ## Inheritence
+
 #### Method tables
 - When `Circle` extends `Object`, its method table contains a copy of `Object`'s method table.
 - If a method in `Circle` overrides one in `Object`, the relevant pointer in `Circle`'s method table (in the part that was duplicated from `Object`) is changed to point to the new method body.
@@ -30,8 +32,11 @@ Notes:
 
 
 ## Types
+
 #### Reference Conversion
+
 #### Primitive Conversion
+
 #### Liskov substitution principle
 If `S` is a subtype of `T`, then objects of type `T` may be replaced with objects of type `S` (i.e. an object of type `T` may be substituted with any object of a subtype `S`) without altering any of the desirable properties of `T`.
 
@@ -49,6 +54,7 @@ There are 3 steps Java uses to find the method to fit, and after that prioritise
 Within a step, if any applicable methods were found, the proceeding steps will be skipped. If multiple applicable methods were found, the most specific method will be selected. If there are more than 1 most specific methods, the method invocation is _ambiguous_ and you get a compile-time error.
 
 ## Generics & Collections
+
 #### Generics
 Suppose a class or interface `B` is a subtype of `A`, then `B<T>` is also a subtype of `A<T>`, i.e., they are covariant.
 
@@ -92,8 +98,8 @@ Notes:
 - The `catch` block is not just limited to `Exception`s: any class that inherits from `Throwable` can be caught there.
 - You can use the `|` operator to group a few specific `Exception`s together.
 
-
 ## hashCode, Nested Class, enum, variable capture
+
 #### Type safety (relates to Generics as well)
   - enum allows a type to be defined and used for a set of predefined constants. Using a constant other than those predefined would lead to a compilation error. In contrast, using int is not type safe since int values other than those predefined can be accidentally assigned / passed as arguments.
   - Generics allow classes / methods that use any reference type to be defined without resorting to using the Object type. It enforce type safety by binding the generic type to a specific given type argument at compile time. Attempt to pass in an incompatible type would led to compilation error
